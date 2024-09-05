@@ -301,7 +301,14 @@ server <- function(input, output, session) {
   
 }
 
-shinyApp(ui = ui, server = server)
+options <- list()
+if (!interactive()) {
+  options$launch.browser <- FALSE
+  options$host <- "0.0.0.0"
+  options$port <- 3838
+}
+shinyApp(ui = ui, server = server, options = options)
+
 
 
 # nCount_RNA - number of UMIs per cell

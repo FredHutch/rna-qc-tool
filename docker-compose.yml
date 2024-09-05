@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  rna-qc-tool:
+    image: sc-registry.fredhutch.org/rna-qc-tool:latest
+    networks:
+      - proxytemp
+    deploy:
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.rna-qc-tool.rule=Host(`rna-qctool.fredhutch.org`)"
+        - "traefik.http.routers.rna-qc-tool-secured.rule=Host(`rna-qctool.fredhutch.org`)"
+        - "traefik.http.routers.rna-qc-tool.entrypoints=web,web-secured"
+        - "traefik.http.services.rna-qc-tool.loadbalancer.server.port=3838" # it seems you always need to give traefik a port so it 'notices' the service
+        - "traefik.http.routers.rna-qc-tool.tls=true"
+
+networks:
+  proxytemp:
+    external: true
