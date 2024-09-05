@@ -22,4 +22,6 @@ RUN rm /tmp/check.R
 
 ENV SHINY_LOG_STDERR=1 
 
+RUN echo 'this is meaningless'
+
 CMD ["/usr/bin/shiny-server"]
