@@ -1,4 +1,4 @@
-FROM fredhutch/r-shiny-server-base:4.3.0
+FROM fredhutch/r-shiny-server-base:4.4.1
 RUN apt-get update -y && apt-get install -y pandoc libudunits2-dev libproj22 libgdal-dev
 RUN R -q -e 'install.packages(c("shiny", "Seurat", "ggplot2", "plotly", "glue", "reactable"))'
 RUN R -q -e 'remove.packages("bslib")'
