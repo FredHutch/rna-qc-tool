@@ -37,6 +37,7 @@ SPARSITY <- function(Sobj){                        # returns proportion of genes
 
 
 ui <- fluidPage(
+  tags$head(includeHTML("google-analytics.html")),
   titlePanel(strong("Single-Cell RNA Quality Control Tool")),
   h5(p("An application for a visual and interactive quality control of scRNA-seq data")),
   hr(),
