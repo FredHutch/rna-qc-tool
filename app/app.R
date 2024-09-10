@@ -75,7 +75,8 @@ ui <- fluidPage(
     ),
     
     navset_card_underline(
-      # title = "",
+      
+      nav_panel("About", uiOutput("about_qmd")),
       
       nav_panel("Table", column(4,reactableOutput("seuratSummary"))),
       
@@ -292,22 +293,25 @@ server <- function(input, output, session) {
   output$testData <- downloadHandler(
     filename = function() { "test_data.h5" },  # The name the user will download
     content = function(file) {
-      download.file(file_url, destfile = file, mode = "wb", quiet = FALSE, method = "curl")
+      download.file(file_url, destfile = file, mode = "wb", quiet = TRUE, method = "curl")
     }
   )
+
+    output$about_qmd <- renderUI({ includeMarkdown("about.qmd") })
   
-  output$saveReport <- downloadHandler(
-    filename = function() { paste("Figure", Sys.Date(), '.png', sep="")},
-    content = function(file){
-      
-      temp_html <- tempfile(fileext = ".html")
-      plotly::plotly_save(ggplotly(plot_novelty()), file = temp_html)
-      
-      # Use webshot2 to convert HTML file to PNG
-      webshot(temp_html, file = file, vwidth = 800, vheight = 600)
-    },
-    contentType = "image/png"
-  )
+    
+  # output$saveReport <- downloadHandler(
+  #   filename = function() { paste("Figure", Sys.Date(), '.png', sep="")},
+  #   content = function(file){
+  #     
+  #     temp_html <- tempfile(fileext = ".html")
+  #     plotly::plotly_save(ggplotly(plot_novelty()), file = temp_html)
+  #     
+  #     # Use webshot2 to convert HTML file to PNG
+  #     webshot(temp_html, file = file, vwidth = 800, vheight = 600)
+  #   },
+  #   contentType = "image/png"
+  # )
   
 }
 

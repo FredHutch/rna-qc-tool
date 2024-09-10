@@ -1,0 +1,35 @@
+---
+title: "About"
+format: html
+editor: visual
+---
+
+Welcome to the **first** ever Shiny app for interactive visualization of sinlge-cell RNA quality control statistics.
+
+<br>
+ 
+## How it works?
+
+Click on `Browse` button in the left pane and upload a (.h5) file. Specify the input parameters (or leave default values). After uploading is complete, click `Apply Filter` button. Analysis begins and the application automatically annotates mitochondrial and ribosomal genes. Next, it filters all the cells and features based on parameters selected in the left pane, in real-time. There parameters can be adjusted anytime.
+
+In a few seconds, 2 tabs on the right will be populated:
+
+-   `Table`: lists all the commonly used statistics for filtered dataset
+
+-   `Plots`: generates all commonly used figures to visualize filtered dataset
+
+## Features
+
+1.  The plots are rendered live (changing parameters will change both tabs live)
+
+2.  The plots are interactive (hover mouse over plots to zoom, see specific values)
+
+3.  `Download Script` button allows you to download scripts that are pre-populated with selected parameters for quality control in Python (using scanpy) and R (seurat)
+
+#### Sample Test
+
+Select `Download test data` to automatically download (.h5) file "10k_PBMC_3p_nextgem_Chromium_X_filtered_feature_bc_matrix.h5" file from the following 10x Genomics [dataset](https://www.10xgenomics.com/datasets/10k-human-pbmcs-3-ht-v3-1-chromium-x-3-1-high). Upload the file following above steps and explore new possibilities
+
+<br> Developed by - Sanaz Agarwal
+
+For any bugs/ suggestions or feedback, please connect via [email](mailto:sanazagarwal99@gmail.com)
