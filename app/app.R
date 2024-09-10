@@ -44,7 +44,9 @@ ui <- fluidPage(
   
   page_sidebar(
     sidebar = sidebar(
+      downloadButton("testData", "Download test data"),
       fileInput("file", "Upload HDF5 File (.h5)", accept = c(".h5")),
+      actionButton("applyFilter", "Apply Filter"),
       sliderInput("mt_threshold", "Mitochondrial Gene Threshold (%)", min = 0, max = 100, value = 10),
       sliderInput("rb_threshold", "Ribosomal Gene Threshold (%)", min = 0, max = 100, value = 45),
       card( card_header('Features/cell'),
@@ -64,7 +66,6 @@ ui <- fluidPage(
       ),
       # numericInput("min_gene_cnt", "Minimum number of cells where a gene should be present", value = 3, min = 0),
       checkboxInput("density_plot", "View density plot", value = FALSE),
-      actionButton("applyFilter", "Apply Filter"),
       card(
         card_header('Download script'),
         card_body(downloadButton("downloadPython", "Python"),
@@ -284,6 +285,14 @@ server <- function(input, output, session) {
                               adata = adata[(adata.obs['pct_counts_mt'] < {input$mt_threshold}) & (adata.obs['pct_counts_rb'] < {input$rb_threshold})]
                               ") })
       writeLines(scriptTemplate(), file)
+    }
+  )
+  
+  file_url <- "https://cf.10xgenomics.com/samples/cell-exp/6.1.2/10k_PBMC_3p_nextgem_Chromium_X/10k_PBMC_3p_nextgem_Chromium_X_filtered_feature_bc_matrix.h5"
+  output$testData <- downloadHandler(
+    filename = function() { "test_data.h5" },  # The name the user will download
+    content = function(file) {
+      download.file(file_url, destfile = file, mode = "wb", quiet = FALSE, method = "curl")
     }
   )
   
