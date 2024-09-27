@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-Welcome to the **first** ever Shiny app for interactive visualization of sinlge-cell RNA quality control statistics.
+Welcome to the **first** ever Shiny app for interactive visualization of single-cell RNA quality control statistics.
 
 <br>
  
