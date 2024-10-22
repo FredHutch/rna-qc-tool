@@ -3,7 +3,7 @@ services:
   rna-qc-tool:
     image: sc-registry.fredhutch.org/rna-qc-tool:latest
     networks:
-      - proxytemp
+      - sc-swarm-net
     deploy:
       restart_policy:
         condition: on-failure
@@ -16,5 +16,5 @@ services:
         - "traefik.http.routers.rna-qc-tool.tls=true"
 
 networks:
-  proxytemp:
+  sc-swarm-net:
     external: true
